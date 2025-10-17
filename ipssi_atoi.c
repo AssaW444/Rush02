@@ -7,23 +7,27 @@ int	ipssi_atoi(char *str)
 
 	i = 0;
 	nbr_moins = 0;
+	signe = 1;
 	result = 0;
 	while (str[i])
 	{
-		if (str[i] == ' ' || str[i] == '\n' || str[i] == '\r' || str[i] == '\t' || str[i] == '\v' || str[i] == '\f')
+		if (str[i] == ' ' || str[i] == '\n' || str[i] == '\r'
+			|| str[i] == '\t' || str[i] == '\v' || str[i] == '\f')
 			i++;
-		if (str[i] == '+')
+		else if (str[i] == '+')
 			i++;
-		if (str[i] == '-')
+		else if (str[i] == '-')
 		{
-			nbr_moins += 1;
+			nbr_moins++;
 			i++;
 		}
-		if (str[i] >= '0' && str[i] <= '9')
+		else if (str[i] >= '0' && str[i] <= '9')
 		{
 			result = result * 10 + (str[i] - '0');
 			i++;
 		}
+		else
+			break ;
 	}
 	if (nbr_moins % 2 != 0)
 		signe = -1;
